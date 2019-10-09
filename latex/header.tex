@@ -1,0 +1,116 @@
+\usepackage{mdwlist}
+\usepackage{times}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath}
+\usepackage{wasysym} % moon symbols
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\iffalse
+\usepackage[pdftex, colorlinks, 	
+	    pdfstartview=FitH,
+	    linkcolor=black,
+	    citecolor=black,
+	    urlcolor=black,
+	    filecolor=black]{hyperref}
+\fi
+\usepackage{floatrow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\definecolor{riceblue}{RGB}{0,32,91}
+
+% Set heading fonts for Rice Blue
+%\usepackage{sectsty}
+%\chapterfont{\color{riceblue}}
+%\sectionfont{\color{riceblue}}
+
+\usepackage{xspace}
+\usepackage{rotating}
+
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\etc}{\emph{etc.}\xspace}
+
+% mark sections as potential cuttable, if set to true then
+% don't display. Only use this if you cut the sections
+% cleanly.
+% never set when in the submittalbe draft
+\newenvironment{possiblecut}{}{\ignorespacesafterend}
+\newenvironment{sizeredux}{\expandafter\comment}{\expandafter\endcomment\ignorespacesafterend}
+%\def\docuts
+\ifdefined\docuts
+  \renewenvironment{possiblecut}{\expandafter\comment}{\expandafter\endcomment\ignorespacesafterend}
+\fi
+
+% Displayed sections with \cancut distinctly in pdf.
+% never set when in the submittalbe draft
+%\def\showcuts
+\ifdefined\showcuts
+  \renewenvironment{possiblecut}{\color{red}<<<Potential Cut:}{\ignorespacesafterend}
+\fi
+
+\newcommand{\Code}[1]{\mbox{\texttt{#1}}}
+      
+% Describing tasks for specific grant activities
+\newtheorem{task}{Task}
+\newcommand{\problem}{\noindent\textit{[Problem] - }\xspace}
+\newcommand{\sol}{\noindent\textit{[Proposed Solution] - }\xspace}
+\newcommand{\prelim}{\noindent\textit{[Preliminary Work] - }\xspace}
+\newcommand{\proposed}{\noindent\textit{[Proposed Work] - }\xspace}
+\newcommand{\eval}{\noindent\textit{[Proposed Evaluation] - }\xspace}
+\renewcommand{\problem}{{{\it \underline{Problem}}.}\xspace}
+\renewcommand{\sol}{{{\it \underline{Proposed Solution}}.}\xspace}
+\renewcommand{\prelim}{{{\it \underline{Preliminary Work}}.}\xspace}
+\renewcommand{\proposed}{{{\it \underline{Proposed Work}}.}\xspace}
+\renewcommand{\eval}{{{\it \underline{Proposed Evaluation}}.}\xspace}
+
+
+% Comments for each person
+\newif\ifcomments
+\commentstrue
+\ifcomments
+  % Allow the comments
+  %% review command -> for drawing attention to parts that are not ready yet
+  \newcommand{\review}[1]{{\bf\textcolor{red}{[#1]}}}
+  \newcommand{\notify}[1]{{\bf\textcolor{blue}{
+    [COMMENT FOR EDITOR -- #1]
+  }}}
+  \newcommand{\notes}[1]{{\footnotesize\textcolor{green}{[NOTE: #1]}}}
+  \newcommand{\writeme}[1]{{\textcolor{gray}{[#1]}}}
+  %\newcommand{\todo}[1]{{{\it \color{gray}\{#1\}}}}
+
+  %%% Comments, general-purpose macros, etc.
+  \usepackage{xcolor}
+  \definecolor{darkgreen}{rgb}{0,0.6,0}
+  %\def\ndd#1{\textbf{\textsl{ $\langle\!\langle$\textcolor{blue}{NDD: #1}$\rangle\!\rangle$}} }
+  \newcommand{\ndd}[1]{\fcolorbox{cyan}{white}{}\footnote{\textcolor{cyan}{[#1--ndd]}}}
+  %\newcommandx{\ndd}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+
+  \newcommand{\topic}[1]{\textcolor{orange}{#1}}
+  \newcommand{\structure}[1]{\noindent{\em\textcolor{darkgreen}{[#1]}}}
+  \newcommand{\point}[1]{{\bf\textcolor{violet}{<#1>}}}
+  \newcommand{\paroutline}[2]{\textbf{\structure{#1}\point{#2}}}
+  \def\outline#1{}
+  \newcommand{\secpurpose}[1]{{{\em\textcolor{gray}{Section Purpose: #1}}}}
+\else
+  % Do nothing
+  \def\ndd[1]{}
+  \def\review[1]{\errmessage{NO review macros when comments turned off!}}
+    \def\notify[1]{}
+    \def\notes[1]{}
+    \def\writeme[1]{}
+    \def\todo[1]{}
+  \def\topic{}
+  \def\structure{}
+  \def\point{}
+  \newcommand{\paroutline}[2]{}
+  \def\secpurpose#1{}
+\fi
+
+\newcommand{\system}{MASS\xspace}
+\newcommand{\systemfull}{My Awesome SyStem\xspace}
