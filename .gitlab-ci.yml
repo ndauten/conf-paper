@@ -7,4 +7,4 @@ compile_pdf:
   stage: build
   artifacts:
     paths:
-      - "latex/proposal.pdf"
+      - "latex/paper.pdf"
